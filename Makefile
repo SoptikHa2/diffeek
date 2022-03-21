@@ -2,7 +2,7 @@ CXX=g++
 CXXFLAGS=-std=c++17 -Wall -pedantic -Wno-long-long -O2 -g
 LDFLAGS=-lstdc++fs
 CXXFLAGS_DEBUG=-std=c++17 -Werror -Wall -pedantic -Wno-long-long -g -pg -fPIE -fsanitize=address
-TARGET=stastpe8
+TARGET=diffeek
 
 # find src/ -iname '*.cpp' | grep -v 'cmake'
 SOURCES=src/Utility.cpp src/FileDiffer/TextFileDiffer.cpp src/FileDiffer/PPMFileDiffer.cpp src/FileDiffer/DataStructures/PPMFile.cpp src/FileDiffer/DataStructures/LevenshteinMatrix.cpp src/FileDiffer/DirectoryDiffer.cpp src/FileDiffer/BinaryFileDiffer.cpp src/FileDiffer/FileDiffer.cpp src/Logger/StderrLogger.cpp src/Logger/Logger.cpp src/Diffeek.cpp src/ArgParser.cpp src/main.cpp src/DataOutput/DirectOutput.cpp src/DataOutput/DataDifference.cpp src/DataOutput/DataOutput.cpp src/DataOutput/GraphicalOutput.cpp src/DataOutput/PatchfileOutput.cpp
