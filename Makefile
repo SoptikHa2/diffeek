@@ -35,15 +35,14 @@ doc: Doxyfile
 test: diffeek
 	examples/automated-check.sh ./$(TARGET) tests
 
-# > V Makefile smí být použity pouze tyto programy: rm, gcc, g++, mkdir, doxygen, cp, mv, cd, ar, make.
-#install: diffeek
-#	install -s $(TARGET) -t $$HOME/.local/bin
-#	install diffeek.1 -m=644 -t "$$(manpath | cut -d':' -f1)/man1"
-#	mandb
-#
-#uninstall:
-#	rm $$HOME/.local/bin/$(TARGET)
-#	rm "$$(manpath | cut -d':' -f1)/man1/diffeek.1"
+install: diffeek
+	install -s $(TARGET) -t $$HOME/.local/bin
+	install diffeek.1 -m=644 -t "$$(manpath | cut -d':' -f1)/man1"
+	mandb
+
+uninstall:
+	rm $$HOME/.local/bin/$(TARGET)
+	rm "$$(manpath | cut -d':' -f1)/man1/diffeek.1"
 
 %.o:
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
