@@ -1,0 +1,63 @@
+.TH DIFFEEK 1 "2021-05-18" "" "User Commands"
+.SH NAME
+\fBdiffeek\fR \- Mime aware diff with custom per-file graphical output
+.
+.SH SYNOPSIS
+.SY diffeek
+[\fIOPTIONS\fR]
+.I SRC_FILE
+.I DST_FILE
+.YS
+.
+.SH DESCRIPTION
+\fBDiffeek\fR is a command line tool that provides rich
+mime-aware diff.
+.
+.SH OPTIONS
+\fBDiffeek\fR tries to guess some options based on file extension,
+use options below to override those guesses.
+.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Display help options
+.TP
+.B \-F format
+Force specific fileformat (so far supported: text, binary, directory, ppm).
+.TP
+.B \-s
+Strict mode: turn off any format-specific ignores. This implies --text-strictcase and --text-strictwhitespace
+.TP
+\fB\-\-text\-strictcase\fR, \fB\-\-text\-strictwhitespace\fR
+Do not ignore case/whitespace when comparing text files
+.TP
+\fB\-x N\fR, \fB\-\-precision N\fR
+Set precision to N, where N has to be greater or equal to 2. The bigger precision, the better diffing results, and
+the slower the whole operation is. Set to 0 for maximum precision (guaranteed to find shortest edit distance).
+This is set to roughly (sum of lines of both files)/25 by default.
+.TP
+\fB\-p\fR, \fB\-\-patch\fR
+Force patch file format output. Should be recognized by the patch(1) utility.
+.TP
+\fB\-g\fR, \fB\-\-graphical\fR
+Force graphical output format. This contains ANSI color codes as well.
+It will look best at terminals that support 8-bit ANSI colors.
+.TP
+.
+Furthermore, Diffeek expects two filenames to compare. First one is source, the second one is destination.  They might be directories, in which case folder structure and file changes are compared.
+.
+.TP
+.
+Graphical output, if not forced by user, is determined by Diffeek. If output is determined to be a file, or if we detect piping into another program, patchfile file format will be used by default. Likewise, if output is determined to go on user's terminal and is read by human, graphical output will be used by default. The only exception is when diffing graphical file formats (such as PPM), in which case XOR'ed graphical output will be printed to the output in corresponding file format. In order to override this behaviour, see the -F flag, to compare those files byte-by-byte or line-by-line (binary or textual comparsion).
+.
+.SH BUGS
+.
+Report all bugs at https://github.com/SoptikHa2/diffeek.
+.SH AUTHOR
+Petr Šťastný <stastpe8@fit.cvut.cz>
+.
+.SH SEE ALSO
+diff(1), delta (https://github.com/dandavison/delta)
+.
+.SH LICENCE
+\fBdiffeek\fR is available under the terms of the GNU General Public License,
+version 3 or any later version, as published by the Free Software Foundation.

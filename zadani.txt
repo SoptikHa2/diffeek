@@ -1,0 +1,43 @@
+# Rozšířený (mime-type aware) diff
+
+Bude vytvořen program Diffeek, který pracuje podobně jako GNU diff[1] nebo delta[2].
+
+Jako parametr dostane dva soubory, které mezi sebou porovná. V případě že soubory budou mít
+ekvivalentní file format (např. zdrojové soubory .cpp a .h), program bude při porovnání
+používat konkrétní specifika např. textového formátu. V opačném případě (například porovnávání
+obrázku a běžného textu) bude uživatel vyzván, aby formát specifikoval - jestli je například
+žádoucí soubory porovnávat mezi sebou binárně.
+
+Funkce programu:
+    - Porovnání dvou textových souborů
+    - Porovnání dvou binárních souborů (hex výpis)
+    - Porovnání dvou PPM (obrázkových) souborů (podporuje ne jeden, ale hned tři různé formáty obrázků: P1, P2, P3)
+    - Flagy, které mohou vynutit konkrétní formát nebo interpretaci souborů.
+    - Možnost zadat dvě složky. Program porovná jejich obsah a označí soubory, které se liší.
+    - U typově textových souborů bude podporovnat funkci ignore case a ignore whitespaces v řádcích.
+    - U všech souborů bude k dispozici strict mode, který vypne např. u textového formátu ignorování nadbytečných mezer a velkých/malých písmen.
+    - Výstup nejen v textovém formátu užitečném pro uživatele, ale také formátu `patch`.
+    - Výstup pro obrázkové porovnávání bude také obrázek, a to XORovaný.
+
+Dobrovolné funkce programu, implementované nad rámec zadání:
+    - Porovnávání na základě editační vzdálenosti, a ne prostého porovnání řádků.
+    - Detekce typu souborů nejen podle přípony, ale i podle skutečného obsahu.
+    - Detekce toho, jestli výstup čte stroj (tedy zapisování do souboru, nebo pipování do jiného programu),
+        nebo uživatel, a přizpůsobení výstupu.
+    - Užitečný výstup: výsledný patchfile je parsovatelný utilitou `patch` a je validní a korektní.
+    - Grafický výstup pro uživatele je barevný (jestliže terminál podporuje 8-bitové ANSI barvy).
+    - Sepsané vstupy, které v průběhu vývoje program segfaultovaly nebo na nich chyboval, a jejich
+        automatizované testování pomocí Makefilu.
+    - Manpage pro uživatele (soubor `diffeek.1`)
+    - Podpora standardního vstupu (- místo vstupního souboru)
+    - Uživatel může ovlivnit cílovou přesnost porovnávání souboru s ohledem na rychlost.
+
+Užití polymorfismu: 
+    - Načítání souborů a jejich porovnávání, dle typu (text, binárka, obrázek, složka, ...)
+    - Vypisování výsledku porovnání na výstup (buď standardní výstup, nebo třeba do souboru, který je možné strojově zpracovat)
+
+
+[1]: https://www.gnu.org/software/diffutils/
+[2]: https://github.com/dandavison/delta
+
+% vim: filetype=markdown

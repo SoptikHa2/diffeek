@@ -1,0 +1,14 @@
+--- Utility.tpp
++++ Utility.tpp.new
+@@ -20,2 +19,0 @@
+-    // TODO: useless template
+-    template <typename T>
+@@ -22,1 +20,1 @@
+-    std::string byteToHexString(T num) {
++    std::string byteToHexString(char num) {
+@@ -85,0 +84,5 @@
++    /// Special struct to be used with unique ptrs (or any other smart pointers)
++    /// and streams. Since we want to store both std::cout and normal file streams
++    /// in a single variable. But usual smart pointer would attempt to delete
++    /// the stream, which is expected at file streams, but not std::cout.
++    /// So this is used to delete anything except std::cout.
